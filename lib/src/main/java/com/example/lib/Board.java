@@ -45,4 +45,14 @@ public class Board implements IBoard {
         }
         throw new NotFoundException();
     }
+
+    @Override
+    public String toXML() {
+        String xmlData = "<board name=" + boardName + ">";
+        for (ISection section : sections) {
+            xmlData = xmlData + "/t" + section.toXML();
+        }
+        xmlData = xmlData + "</board>"
+        return xmlData;
+    }
 }
