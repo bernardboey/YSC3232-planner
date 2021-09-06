@@ -6,5 +6,4 @@ public interface IBoard {
     void addSection(ISection t) throws AlreadyExistsException;
     void removeSection(ISection t) throws NotFoundException;
     ISection getSection(String sectionName) throws NotFoundException;
-    String toXML();
 }

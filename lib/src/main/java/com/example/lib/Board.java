@@ -46,7 +46,6 @@ public class Board implements IBoard {
         throw new NotFoundException();
     }
 
-    @Override
     public String toXML() {
         StringBuilder xmlData = new StringBuilder("<board name='" + boardName + "'>\n");
         for (ISection section : sections) {

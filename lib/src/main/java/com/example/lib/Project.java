@@ -50,8 +50,4 @@ public class Project implements IProject {
         xmlstring += name + tasks_string + "\t\t\t</tasks>\n" + "\t\t</project>";
         return xmlstring;
     }
-
-    public void fromXML(String data) {
-        //TODO
-    }
 }
