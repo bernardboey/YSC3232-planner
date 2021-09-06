@@ -1,5 +1,6 @@
 package com.example.lib;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 public class Section implements ISection {
@@ -34,5 +35,22 @@ public class Section implements ISection {
         if (!tasks.remove(t)) {
             throw new NotFoundException();
         }
+    }
+
+    public String toXML() {
+        String taskXML = "<section name='%s'>\n";
+        tasks.forEach(task -> taskXML + "\t" + task.toXML() + "\n" );
+        return taskXML + "</section>";
+    }
+
+    public static void main(String[] args) {
+        Section testSection = new Section("testSection");
+        Task testTask = new Task("testTask", "this is a test task", Duration.ofHours(1));
+        try {
+            testSection.addTask(testTask);
+        } catch (AlreadyExistsException e) {
+            e.printStackTrace();
+        }
+        testSection.toXML();
     }
 }
