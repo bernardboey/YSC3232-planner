@@ -1,14 +1,14 @@
 package com.example.lib;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Section implements ISection {
     private final String name;
-    private final HashSet<ITask> tasks;
+    private final ArrayList<ITask> tasks;
 
     public Section(String name) {
         this.name = name;
-        this.tasks = new HashSet<>();
+        this.tasks = new ArrayList<ITask>();
     }
 
     @Override
