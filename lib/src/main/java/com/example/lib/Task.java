@@ -53,7 +53,7 @@ public class Task implements ITask {
 
     public String toXML() {
         StringBuilder taskXML = new StringBuilder(
-                String.format("<task name=%s description=%s expected-duration=%s>",
+                String.format("<task name='%s' description='%s' expected-duration='%s'>",
                         name, description, expectedDuration)
         );
 
