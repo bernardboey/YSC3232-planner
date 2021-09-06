@@ -38,8 +38,9 @@ public class Section implements ISection {
     }
 
     public String toXML() {
-        String taskXML = "<section name='%s'>\n";
-        tasks.forEach(task -> taskXML + "\t" + task.toXML() + "\n" );
+        StringBuilder taskXML = new StringBuilder("<section name='%s'>\n");
+        for (ITask t : tasks)
+            taskXML.append("\t" + (((Task) t).toXML()) + "\n");
         return taskXML + "</section>";
     }
 
@@ -51,6 +52,6 @@ public class Section implements ISection {
         } catch (AlreadyExistsException e) {
             e.printStackTrace();
         }
-        testSection.toXML();
+        System.out.print(testSection.toXML());
     }
 }
