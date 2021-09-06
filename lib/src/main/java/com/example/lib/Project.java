@@ -1,25 +1,46 @@
 package com.example.lib;
 
+import java.util.HashSet;
+
 public class Project implements IProject {
+    private String name;
+    private HashSet<ITask> tasks;
+
+    public Project(String name) {
+        this.name = name;
+    }
+
+    public Project(HashSet<ITask> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public String getName() {
-        // TODO
-        return null;
+        return name;
     }
 
     @Override
     public Iterable<ITask> getTasks() {
-        // TODO
-        return null;
+        return tasks;
     }
 
     @Override
     public void addTask(ITask t) throws AlreadyExistsException {
-        // TODO
+        if (tasks.contains(t)) {
+            throw new AlreadyExistsException();
+        }
+        else {
+            tasks.add(t);
+        }
     }
 
     @Override
     public void removeTask(ITask t) throws NotFoundException {
-        // TODO
+        if (!tasks.contains(t)) {
+            throw new NotFoundException();
+        }
+        else {
+            tasks.remove(t);
+        }
     }
 }
