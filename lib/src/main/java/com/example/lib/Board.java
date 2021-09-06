@@ -52,7 +52,7 @@ public class Board implements IBoard {
         for (ISection section : sections) {
             xmlData = xmlData + "/t" + section.toXML();
         }
-        xmlData = xmlData + "</board>"
+        xmlData = xmlData + "</board>";
         return xmlData;
     }
 }
