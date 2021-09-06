@@ -21,10 +21,10 @@ public class Planner implements IPlanner {
 
     @Override
     public void addProject(IProject p) throws AlreadyExistsException {
-        if (boards.containsKey(p.getName())) {
+        if (projects.containsKey(p.getName())) {
             throw new AlreadyExistsException();
         }
-        boards.put(p.getName(), p);
+        projects.put(p.getName(), p);
     }
 
     @Override
