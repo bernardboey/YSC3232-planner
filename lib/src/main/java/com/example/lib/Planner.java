@@ -35,5 +35,5 @@ public class Planner implements IPlanner {
     }
 }
 
-class AlreadyExistsException extends Exception {};
-class NotFoundException extends Exception {};
+class AlreadyExistsException extends Exception {}
+class NotFoundException extends Exception {}

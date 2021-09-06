@@ -1,39 +1,53 @@
 package com.example.lib;
 
 import java.time.Duration;
+import java.util.HashSet;
 
 public class Task implements ITask {
+    private final String name;
+    private final String description;
+    private final Duration expectedDuration;
+    private final HashSet<ITask> subTasks;
+
+    public Task(String name, String description, Duration expectedDuration) {
+        this.name = name;
+        this.description = description;
+        this.expectedDuration = expectedDuration;
+        this.subTasks = new HashSet<>();
+    }
+
     @Override
     public String getName() {
-        // TODO
-        return null;
+        return name;
     }
 
     @Override
     public String getDescription() {
-        // TODO
-        return null;
+        return description;
     }
 
     @Override
     public Duration getExpectedDuration() {
-        // TODO
-        return null;
+        return expectedDuration;
     }
 
     @Override
     public Iterable<ITask> getSubTasks() {
-        // TODO
-        return null;
+        return subTasks;
     }
 
     @Override
     public void addSubTask(ITask t) throws AlreadyExistsException {
-        // TODO
+        if (subTasks.contains(t)) {
+            throw new AlreadyExistsException();
+        }
+        subTasks.add(t);
     }
 
     @Override
     public void removeSubTask(ITask t) throws NotFoundException {
-        // TODO
+        if (!subTasks.remove(t)) {
+            throw new NotFoundException();
+        }
     }
 }
