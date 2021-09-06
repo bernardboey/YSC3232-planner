@@ -50,4 +50,20 @@ public class Task implements ITask {
             throw new NotFoundException();
         }
     }
+
+    public String toXML() {
+        StringBuilder taskXML = new StringBuilder("<task>");
+        taskXML.append("<name>").append(name).append("</name>");
+        taskXML.append("<description>").append(description).append("</description>");
+        taskXML.append("<expected-duration>").append(expectedDuration).append("</expected-duration>");
+
+        taskXML.append("<subtasks>");
+        for (ITask t : subTasks) {
+            taskXML.append(((Task) t).toXML());
+        }
+        taskXML.append("</subtasks>");
+
+        taskXML.append("</task>");
+        return taskXML.toString();
+    }
 }
