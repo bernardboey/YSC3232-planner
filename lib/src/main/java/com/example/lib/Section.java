@@ -31,9 +31,8 @@ public class Section implements ISection {
 
     @Override
     public void removeTask(ITask t) throws NotFoundException {
-        if (!tasks.contains(t)) {
+        if (!tasks.remove(t)) {
             throw new NotFoundException();
         }
-        tasks.remove(t);
     }
 }

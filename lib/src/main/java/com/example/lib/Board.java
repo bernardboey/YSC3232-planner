@@ -4,11 +4,11 @@ import java.util.HashSet;
 
 public class Board implements IBoard {
     private final String boardName;
-    private final HashSet<ISection> sectionList;
+    private final HashSet<ISection> sections;
 
     public Board(String name) {
         this.boardName = name;
-        this.sectionList = new HashSet<>();
+        this.sections = new HashSet<>();
     }
 
     @Override
@@ -18,36 +18,31 @@ public class Board implements IBoard {
 
     @Override
     public Iterable<ISection> getSections() {
-        return sectionList;
+        return sections;
     }
 
     @Override
     public void addSection(ISection t) throws AlreadyExistsException {
-        if (sectionList.contains(t)) {
+        if (sections.contains(t)) {
             throw new AlreadyExistsException();
         }
-        else {
-            sectionList.add(t);
-        }
+        sections.add(t);
     }
 
     @Override
     public void removeSection(ISection t) throws NotFoundException {
-        if (sectionList.contains(t)) {
-            sectionList.remove(t);
-        }
-        else {
+        if (!sections.remove(t)) {
             throw new NotFoundException();
         }
     }
 
     @Override
     public ISection getSection(String sectionName) throws NotFoundException {
-        for (ISection sectionObj : sectionList) {
-            if ((sectionObj.getName()).equals(sectionName)) {
-                return sectionObj;
+        for (ISection section : sections) {
+            if (section.getName().equals(sectionName)) {
+                return section;
             }
         }
-        return null;
+        throw new NotFoundException();
     }
 }
