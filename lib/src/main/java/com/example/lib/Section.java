@@ -1,18 +1,14 @@
-    package com.example.lib;
+package com.example.lib;
 
-    import java.util.HashSet;
+import java.util.HashSet;
 
-    public class Section implements ISection {
-    private String name;
-    private HashSet<ITask> taskList;
+public class Section implements ISection {
+    private final String name;
+    private final HashSet<ITask> tasks;
 
     public Section(String name) {
         this.name = name;
-    };
-
-    public Section(String name, HashSet<ITask> tasks) {
-        this.name = name;
-        this.taskList = tasks;
+        this.tasks = new HashSet<>();
     }
 
     @Override
@@ -22,20 +18,22 @@
 
     @Override
     public Iterable<ITask> getTasks() {
-        return taskList;
+        return tasks;
     }
 
     @Override
     public void addTask(ITask t) throws AlreadyExistsException {
-        if (taskList.contains(t))
+        if (tasks.contains(t)) {
             throw new AlreadyExistsException();
-        taskList.add(t);
+        }
+        tasks.add(t);
     }
 
     @Override
     public void removeTask(ITask t) throws NotFoundException {
-        if (!taskList.contains(t))
+        if (!tasks.contains(t)) {
             throw new NotFoundException();
-        taskList.remove(t);
+        }
+        tasks.remove(t);
     }
 }
