@@ -3,8 +3,8 @@ package com.example.lib;
 import java.util.HashMap;
 
 public class Planner implements IPlanner {
-    final HashMap<String, IBoard> boards;
-    final HashMap<String, IProject> projects;
+    private final HashMap<String, IBoard> boards;
+    private final HashMap<String, IProject> projects;
 
     public Planner() {
         this.boards = new HashMap<>();
