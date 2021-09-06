@@ -48,7 +48,7 @@ public class Board implements IBoard {
 
     @Override
     public String toXML() {
-        String xmlData = "<board name=" + boardName + ">";
+        String xmlData = "<board name='" + boardName + "'>";
         for (ISection section : sections) {
             xmlData = xmlData + "/t" + section.toXML();
         }
