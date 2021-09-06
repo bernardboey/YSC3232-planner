@@ -39,8 +39,19 @@ public class Planner implements IPlanner {
 
     @Override
     public String writeXMLData() {
-        // TODO
-        return null;
+        StringBuilder boardsXml = new StringBuilder("<boards>");
+        for (IBoard b : boards.values()) {
+            boardsXml.append(((Board) b).toXML());
+        }
+        boardsXml.append("</boards>");
+
+        StringBuilder projectsXml = new StringBuilder("<projects>");
+        for (IProject p : projects.values()) {
+            projectsXml.append(((Project) p).toXML());
+        }
+        projectsXml.append("</projects>");
+
+        return "<planner>" + boardsXml + projectsXml + "</planner>";
     }
 
     @Override

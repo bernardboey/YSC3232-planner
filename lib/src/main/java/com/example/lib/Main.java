@@ -20,6 +20,7 @@ public class Main {
         todoSection.addTask(T1);
         todoSection.addTask(T2);
         doneSection.addTask(T3);
-        planner.writeXMLData();
+        String xmlData = planner.writeXMLData();
+        System.out.println(xmlData);
     }
 }
