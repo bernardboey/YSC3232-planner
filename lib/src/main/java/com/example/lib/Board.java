@@ -1,19 +1,19 @@
 package com.example.lib;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Board implements IBoard {
-    private final String boardName;
-    private final HashSet<ISection> sections;
+    private final String name;
+    private final ArrayList<ISection> sections;
 
     public Board(String name) {
-        this.boardName = name;
-        this.sections = new HashSet<>();
+        this.name = name;
+        this.sections = new ArrayList<>();
     }
 
     @Override
     public String getName() {
-        return boardName;
+        return name;
     }
 
     @Override
@@ -46,12 +46,20 @@ public class Board implements IBoard {
         throw new NotFoundException();
     }
 
-    public String toXML() {
-        StringBuilder xmlData = new StringBuilder("<board name='" + boardName + "'>\n");
-        for (ISection section : sections) {
-            xmlData.append("\t\t\t").append(((Section)section).toXML());
+    public String toXML(int indentationLevel) {
+        String indentation = "\t".repeat(indentationLevel);
+
+        StringBuilder boardXML = new StringBuilder(
+                String.format("%s<board name='%s'>\n", indentation, name)
+        );
+
+        boardXML.append(indentation).append("\t<sections>\n");
+        for (ISection s : sections) {
+            boardXML.append(((Section)s).toXML(indentationLevel + 2));
         }
-        xmlData.append("\t\t</board>");
-        return xmlData.toString();
+        boardXML.append(indentation).append("\t</sections>\n");
+
+        boardXML.append(indentation).append("</board>\n");
+        return boardXML.toString();
     }
 }

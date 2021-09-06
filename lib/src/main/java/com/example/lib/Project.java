@@ -1,14 +1,14 @@
 package com.example.lib;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Project implements IProject {
     private final String name;
-    private final HashSet<ITask> tasks;
+    private final ArrayList<ITask> tasks;
 
     public Project(String name) {
         this.name = name;
-        this.tasks = new HashSet<>();
+        this.tasks = new ArrayList<>();
     }
 
     @Override
@@ -36,18 +36,20 @@ public class Project implements IProject {
         }
     }
 
-    public String toXML() {
-        String xmlstring = "<project";
-        String name = " name='" + getName() + "'>\n" + "\t\t\t<tasks>\n";
+    public String toXML(int indentationLevel) {
+        String indentation = "\t".repeat(indentationLevel);
 
-        StringBuilder tasks_string = new StringBuilder();
+        StringBuilder projectXML = new StringBuilder(
+                String.format("%s<project name='%s'>\n", indentation, name)
+        );
 
+        projectXML.append(indentation).append("\t<tasks>\n");
         for (ITask t : tasks) {
-            String task_xml = ((Task)t).toXML();
-            tasks_string.append(task_xml);
+            projectXML.append(((Task)t).toXML(indentationLevel + 2));
         }
+        projectXML.append(indentation).append("\t</tasks>\n");
 
-        xmlstring += name + tasks_string + "\t\t\t</tasks>\n" + "\t\t</project>";
-        return xmlstring;
+        projectXML.append(indentation).append("</project>\n");
+        return projectXML.toString();
     }
 }

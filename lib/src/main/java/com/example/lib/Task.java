@@ -1,19 +1,19 @@
 package com.example.lib;
 
 import java.time.Duration;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Task implements ITask {
     private final String name;
     private final String description;
     private final Duration expectedDuration;
-    private final HashSet<ITask> subTasks;
+    private final ArrayList<ITask> subTasks;
 
     public Task(String name, String description, Duration expectedDuration) {
         this.name = name;
         this.description = description;
         this.expectedDuration = expectedDuration;
-        this.subTasks = new HashSet<>();
+        this.subTasks = new ArrayList<>();
     }
 
     @Override
@@ -51,19 +51,21 @@ public class Task implements ITask {
         }
     }
 
-    public String toXML() {
+    public String toXML(int indentationLevel) {
+        String indentation = "\t".repeat(indentationLevel);
+
         StringBuilder taskXML = new StringBuilder(
-                String.format("\t\t\t<task name='%s' description='%s' expected-duration='%s'>\n",
-                        name, description, expectedDuration)
+                String.format("%s<task name='%s' description='%s' expected-duration='%s'>\n",
+                        indentation, name, description, expectedDuration)
         );
 
-        taskXML.append("\t\t\t\t<subtasks>\n");
+        taskXML.append(indentation).append("\t<subtasks>\n");
         for (ITask t : subTasks) {
-            taskXML.append(((Task) t).toXML());
+            taskXML.append(((Task) t).toXML(indentationLevel + 2));
         }
-        taskXML.append("\t\t\t\t</subtasks>\n");
+        taskXML.append(indentation).append("\t</subtasks>\n");
 
-        taskXML.append("\t\t\t</task>\n");
+        taskXML.append(indentation).append("</task>\n");
         return taskXML.toString();
     }
 }

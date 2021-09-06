@@ -9,7 +9,7 @@ public class Section implements ISection {
 
     public Section(String name) {
         this.name = name;
-        this.tasks = new ArrayList<ITask>();
+        this.tasks = new ArrayList<>();
     }
 
     @Override
@@ -37,11 +37,21 @@ public class Section implements ISection {
         }
     }
 
-    public String toXML() {
-        StringBuilder taskXML = new StringBuilder(String.format("<section name='%s'>\n", name));
-        for (ITask t : tasks)
-            taskXML.append("\t" + (((Task) t).toXML()) + "\n");
-        return taskXML + "\t\t\t</section>\n";
+    public String toXML(int indentationLevel) {
+        String indentation = "\t".repeat(indentationLevel);
+
+        StringBuilder sectionXML = new StringBuilder(
+                String.format("%s<section name='%s'>\n", indentation, name)
+        );
+
+        sectionXML.append(indentation).append("\t<tasks>\n");
+        for (ITask t : tasks) {
+            sectionXML.append(((Task)t).toXML(indentationLevel + 2));
+        }
+        sectionXML.append(indentation).append("\t</tasks>\n");
+
+        sectionXML.append(indentation).append("</section>\n");
+        return sectionXML.toString();
     }
 
     public static void main(String[] args) {
@@ -52,6 +62,6 @@ public class Section implements ISection {
         } catch (AlreadyExistsException e) {
             e.printStackTrace();
         }
-        System.out.print(testSection.toXML());
+        System.out.print(testSection.toXML(0));
     }
 }

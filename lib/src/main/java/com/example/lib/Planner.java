@@ -54,13 +54,13 @@ public class Planner implements IPlanner {
     public String writeXMLData() {
         StringBuilder boardsXml = new StringBuilder("\t<boards>\n");
         for (IBoard b : boards.values()) {
-            boardsXml.append("\t\t").append(((Board) b).toXML()).append("\n");
+            boardsXml.append(((Board) b).toXML(2));
         }
         boardsXml.append("\t</boards>\n");
 
         StringBuilder projectsXml = new StringBuilder("\t<projects>\n");
         for (IProject p : projects.values()) {
-            projectsXml.append("\t\t").append(((Project) p).toXML()).append("\n");
+            projectsXml.append(((Project) p).toXML(2));
         }
         projectsXml.append("\t</projects>\n");
 
