@@ -1,6 +1,14 @@
 package com.example.lib;
 
 import java.util.HashMap;
+import java.io.StringReader;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.xml.sax.InputSource;
 
 public class Planner implements IPlanner {
     private final HashMap<String, IBoard> boards;
@@ -56,7 +64,12 @@ public class Planner implements IPlanner {
 
     @Override
     public void readXMLData(String data) {
-        // TODO
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.parse(new InputSource(new StringReader(data)));
+
+        Element root = document.getDocumentElement();
+
     }
 }
 
