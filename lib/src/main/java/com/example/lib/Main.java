@@ -23,6 +23,7 @@ public class Main {
         todoSection.addTask(T2);
         doneSection.addTask(T3);
         String xmlData = planner.writeXMLData();
-        System.out.println(xmlData);
+        Planner newPlanner = new Planner();
+        newPlanner.readXMLData(xmlData);
     }
 }
