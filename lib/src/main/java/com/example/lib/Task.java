@@ -53,17 +53,17 @@ public class Task implements ITask {
 
     public String toXML() {
         StringBuilder taskXML = new StringBuilder(
-                String.format("<task name='%s' description='%s' expected-duration='%s'>",
+                String.format("\t\t\t<task name='%s' description='%s' expected-duration='%s'>\n",
                         name, description, expectedDuration)
         );
 
-        taskXML.append("<subtasks>");
+        taskXML.append("\t\t\t\t<subtasks>\n");
         for (ITask t : subTasks) {
             taskXML.append(((Task) t).toXML());
         }
-        taskXML.append("</subtasks>");
+        taskXML.append("\t\t\t\t</subtasks>\n");
 
-        taskXML.append("</task>");
+        taskXML.append("\t\t\t</task>\n");
         return taskXML.toString();
     }
 }

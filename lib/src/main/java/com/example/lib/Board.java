@@ -48,11 +48,11 @@ public class Board implements IBoard {
 
     @Override
     public String toXML() {
-        String xmlData = "<board name=" + boardName + ">";
+        StringBuilder xmlData = new StringBuilder("<board name='" + boardName + "'>\n");
         for (ISection section : sections) {
-            xmlData = xmlData + "/t" + section.toXML();
+            xmlData.append("\t\t\t").append(((Section)section).toXML());
         }
-        xmlData = xmlData + "</board>";
-        return xmlData;
+        xmlData.append("\t\t</board>");
+        return xmlData.toString();
     }
 }

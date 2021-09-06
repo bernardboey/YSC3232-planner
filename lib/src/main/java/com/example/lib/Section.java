@@ -38,10 +38,10 @@ public class Section implements ISection {
     }
 
     public String toXML() {
-        StringBuilder taskXML = new StringBuilder("<section name='%s'>\n");
+        StringBuilder taskXML = new StringBuilder(String.format("<section name='%s'>\n", name));
         for (ITask t : tasks)
             taskXML.append("\t" + (((Task) t).toXML()) + "\n");
-        return taskXML + "</section>";
+        return taskXML + "\t\t\t</section>\n";
     }
 
     public static void main(String[] args) {

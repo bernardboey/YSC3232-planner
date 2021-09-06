@@ -47,19 +47,19 @@ public class Planner implements IPlanner {
 
     @Override
     public String writeXMLData() {
-        StringBuilder boardsXml = new StringBuilder("<boards>");
+        StringBuilder boardsXml = new StringBuilder("\t<boards>\n");
         for (IBoard b : boards.values()) {
-            boardsXml.append(((Board) b).toXML());
+            boardsXml.append("\t\t").append(((Board) b).toXML()).append("\n");
         }
-        boardsXml.append("</boards>");
+        boardsXml.append("\t</boards>\n");
 
-        StringBuilder projectsXml = new StringBuilder("<projects>");
+        StringBuilder projectsXml = new StringBuilder("\t<projects>\n");
         for (IProject p : projects.values()) {
-            projectsXml.append(((Project) p).toXML());
+            projectsXml.append("\t\t").append(((Project) p).toXML()).append("\n");
         }
-        projectsXml.append("</projects>");
+        projectsXml.append("\t</projects>\n");
 
-        return "<planner>" + boardsXml + projectsXml + "</planner>";
+        return "<planner>\n" + boardsXml + projectsXml + "</planner>";
     }
 
     @Override
@@ -69,7 +69,6 @@ public class Planner implements IPlanner {
         Document document = builder.parse(new InputSource(new StringReader(data)));
 
         Element root = document.getDocumentElement();
-
     }
 }
 

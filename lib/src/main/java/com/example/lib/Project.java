@@ -38,7 +38,7 @@ public class Project implements IProject {
 
     public String toXML() {
         String xmlstring = "<project";
-        String name = " name='" + getName() + "'>" + "<tasks>";
+        String name = " name='" + getName() + "'>\n" + "\t\t\t<tasks>\n";
 
         StringBuilder tasks_string = new StringBuilder();
 
@@ -47,7 +47,7 @@ public class Project implements IProject {
             tasks_string.append(task_xml);
         }
 
-        xmlstring += name + tasks_string + "</tasks>" + "</project>";
+        xmlstring += name + tasks_string + "\t\t\t</tasks>\n" + "\t\t</project>";
         return xmlstring;
     }
 
