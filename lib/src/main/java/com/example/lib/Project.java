@@ -35,4 +35,23 @@ public class Project implements IProject {
             throw new NotFoundException();
         }
     }
+
+    public String toXML() {
+        String xmlstring = "<project";
+        String name = " name='" + getName() + "'>" + "<tasks>";
+
+        StringBuilder tasks_string = new StringBuilder();
+
+        for (ITask t : tasks) {
+            String task_xml = ((Task)t).toXML();
+            tasks_string.append(task_xml);
+        }
+
+        xmlstring += name + tasks_string + "</tasks>" + "</project>";
+        return xmlstring;
+    }
+
+    public void fromXML(String data) {
+        //TODO
+    }
 }
