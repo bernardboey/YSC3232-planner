@@ -46,7 +46,7 @@ public class Project implements IProject {
 
         projectXML.append(indentation).append("\t<tasks>\n");
         for (ITask t : tasks) {
-            projectXML.append(((Task)t).toXML(indentationLevel + 2));
+            projectXML.append(t.toXML(indentationLevel + 2));
         }
         projectXML.append(indentation).append("\t</tasks>\n");
 

@@ -47,7 +47,7 @@ public class Section implements ISection {
 
         sectionXML.append(indentation).append("\t<tasks>\n");
         for (ITask t : tasks) {
-            sectionXML.append(((Task)t).toXML(indentationLevel + 2));
+            sectionXML.append(t.toXML(indentationLevel + 2));
         }
         sectionXML.append(indentation).append("\t</tasks>\n");
 

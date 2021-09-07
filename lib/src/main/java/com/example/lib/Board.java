@@ -56,7 +56,7 @@ public class Board implements IBoard {
 
         boardXML.append(indentation).append("\t<sections>\n");
         for (ISection s : sections) {
-            boardXML.append(((Section)s).toXML(indentationLevel + 2));
+            boardXML.append(s.toXML(indentationLevel + 2));
         }
         boardXML.append(indentation).append("\t</sections>\n");
 

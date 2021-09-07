@@ -62,7 +62,7 @@ public class Task implements ITask {
 
         taskXML.append(indentation).append("\t<subtasks>\n");
         for (ITask t : subTasks) {
-            taskXML.append(((Task) t).toXML(indentationLevel + 2));
+            taskXML.append(t.toXML(indentationLevel + 2));
         }
         taskXML.append(indentation).append("\t</subtasks>\n");
 
