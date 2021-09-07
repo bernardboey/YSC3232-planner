@@ -5,4 +5,5 @@ public interface IProject {
     Iterable<ITask> getTasks() ;
     void addTask(ITask t) throws AlreadyExistsException;
     void removeTask(ITask t) throws NotFoundException;
+    String toXML(int indentationLevel);
 }

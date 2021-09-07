@@ -46,6 +46,7 @@ public class Board implements IBoard {
         throw new NotFoundException();
     }
 
+    @Override
     public String toXML(int indentationLevel) {
         String indentation = "\t".repeat(indentationLevel);
 

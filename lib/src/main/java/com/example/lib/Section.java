@@ -37,6 +37,7 @@ public class Section implements ISection {
         }
     }
 
+    @Override
     public String toXML(int indentationLevel) {
         String indentation = "\t".repeat(indentationLevel);
 

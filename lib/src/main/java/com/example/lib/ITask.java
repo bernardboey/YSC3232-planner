@@ -9,4 +9,5 @@ interface ITask {
     Iterable<ITask> getSubTasks() ;
     void addSubTask(ITask t) throws AlreadyExistsException;
     void removeSubTask(ITask t) throws NotFoundException;
+    String toXML(int indentationLevel);
 }
